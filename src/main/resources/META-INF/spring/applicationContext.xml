@@ -7,7 +7,9 @@
     <context:component-scan base-package="de.staehler.spring.lazybeans"/>
 
     <beans profile="test">
-        <bean class="de.staehler.spring.lazybeans.LazyInitAllBeansInTestBeanFactoryPostProcessor" />
+        <bean class="de.staehler.spring.lazybeans.LazyInitAllBeansInTestBeanFactoryPostProcessor">
+            <constructor-arg index="0" value="de.staehler"/>
+        </bean>
     </beans>
 
 

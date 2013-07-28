@@ -8,11 +8,18 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.core.Ordered;
 
+/**
+ * This class is for loading all beans lazy in test environment to reduce memory usage of unused beans.
+ */
 public class LazyInitAllBeansInTestBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Ordered {
 
     private static final Logger LOG = LoggerFactory.getLogger(LazyInitAllBeansInTestBeanFactoryPostProcessor.class);
 
-    private static final String PACKAGE_FILTER_STRING = "de.staehler";
+    private final String packageFilter;
+
+    public LazyInitAllBeansInTestBeanFactoryPostProcessor(String packageFilter) {
+        this.packageFilter = packageFilter;
+    }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
@@ -29,7 +36,7 @@ public class LazyInitAllBeansInTestBeanFactoryPostProcessor implements BeanFacto
         }
 
         final String beanClassName = beanDefinition.getBeanClassName();
-        if (!beanClassName.startsWith(PACKAGE_FILTER_STRING)) {
+        if (!beanClassName.startsWith(packageFilter)) {
             return;
         }
 

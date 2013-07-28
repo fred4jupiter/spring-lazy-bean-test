@@ -1,6 +1,9 @@
-package de.staehler.spring.lazybeans.service;
+package de.staehler.spring.lazybeans.service.impl;
 
 
+import de.staehler.spring.lazybeans.service.ServiceOne;
+import de.staehler.spring.lazybeans.service.ServiceTwo;
+import de.staehler.spring.lazybeans.service.ServiceWithDependencies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
